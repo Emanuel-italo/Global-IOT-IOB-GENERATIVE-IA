@@ -65,3 +65,8 @@ void setup() {
 Serial.println("==============================================");
   Serial.println(" OrbitalSense — Estacao IoT Inicializando...");
   Serial.println("==============================================");
+
+    // ─── Conexão Wi-Fi ────────────────────────────────────────
+  Serial.print("[WiFi] Conectando a: ");
+  Serial.println(SSID);
+  WiFi.begin(SSID, PASSWORD);
