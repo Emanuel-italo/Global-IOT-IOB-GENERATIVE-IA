@@ -132,3 +132,9 @@ void lerSensor() {
     Serial.println(valorAnalog);
   }
 }
+
+void atualizarLEDs() {
+  // Alerta manual tem prioridade: pisca o LED vermelho
+  if (alertaManual) {
+  
+}
