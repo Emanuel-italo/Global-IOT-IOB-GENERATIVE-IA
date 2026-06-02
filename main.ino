@@ -190,3 +190,7 @@ void processarBotoes() {
   if (statusPreto == LOW && flagPreto == LOW) {
     flagPreto = HIGH;
   }
+
+    if (statusPreto == HIGH && flagPreto == HIGH) {
+    flagPreto    = LOW;
+    alertaManual = !alertaManual;
