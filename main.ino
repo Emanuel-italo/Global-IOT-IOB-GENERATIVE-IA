@@ -32,3 +32,14 @@ struct Alerta {
 };
 Alerta historico[5];
 int idxHistorico = 0;
+
+void atualizarLEDs();
+void processarBotoes();
+void lerSensor();
+void handleStatus();
+void handleSensor();
+void handleAlertas();
+void handleReset();
+void handleNotFound();
+void registrarAlerta(String tipo);
+String nivelParaString(int nivel);
