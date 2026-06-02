@@ -230,3 +230,5 @@ void handleStatus() {
    doc["uptime_ms"]          = millis();
   doc["wifi_rssi"]          = WiFi.RSSI();
   doc["modo_automatico"]    = modoAutomatico;
+  doc["alerta_manual_ativo"]= alertaManual;
+  doc["total_alertas"]      = contadorAlertas;
