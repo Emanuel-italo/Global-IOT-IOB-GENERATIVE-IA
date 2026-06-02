@@ -43,3 +43,7 @@ void handleReset();
 void handleNotFound();
 void registrarAlerta(String tipo);
 String nivelParaString(int nivel);
+
+void setup() {
+  Serial.begin(115200);
+  delay(500);
