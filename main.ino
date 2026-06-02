@@ -85,3 +85,6 @@ Serial.println("==============================================");
   } else {
     Serial.println("\n[WiFi] FALHA NA CONEXAO — operando offline");
   }
+
+server.on("/status",  HTTP_GET,  handleStatus);
+server.on("/sensor",  HTTP_GET,  handleSensor);
