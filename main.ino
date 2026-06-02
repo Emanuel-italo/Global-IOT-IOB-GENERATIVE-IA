@@ -223,3 +223,7 @@ String nivelParaString(int nivel) {
 void handleStatus() {
   // Adiciona cabeçalho CORS para dashboard externo
   server.sendHeader("Access-Control-Allow-Origin", "*");
+
+    StaticJsonDocument<256> doc;
+  doc["sistema"]            = "OrbitalSense";
+  doc["versao"]             = "1.0.0";
