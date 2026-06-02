@@ -227,3 +227,6 @@ void handleStatus() {
     StaticJsonDocument<256> doc;
   doc["sistema"]            = "OrbitalSense";
   doc["versao"]             = "1.0.0";
+   doc["uptime_ms"]          = millis();
+  doc["wifi_rssi"]          = WiFi.RSSI();
+  doc["modo_automatico"]    = modoAutomatico;
