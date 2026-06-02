@@ -135,3 +135,7 @@ void initWiFi() {
   Serial.println("\n[WiFi] Conectado!");
 }
 
+void initMQTT() {
+  MQTT.setServer(BROKER_MQTT, BROKER_PORT);
+  MQTT.setCallback(callbackMQTT);
+}
