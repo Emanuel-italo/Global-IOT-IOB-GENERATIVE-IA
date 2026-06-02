@@ -181,3 +181,5 @@ void processarBotoes() {
     modoAutomatico = !modoAutomatico;
     alertaManual   = false; // cancela alerta manual ao trocar modo
     Serial.print("[BOTAO BRANCO] Modo automatico: ");
+    Serial.println(modoAutomatico ? "ATIVADO" : "DESATIVADO");
+  }
