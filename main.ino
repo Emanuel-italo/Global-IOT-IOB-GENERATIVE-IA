@@ -74,3 +74,11 @@ void publicarTudo();
 String jsonStatus();
 String jsonSensor();
 String jsonAlertas();
+
+void setup() {
+  Serial.begin(115200);
+
+  // Passo B: Inicialização da tela nas primeiras linhas do setup
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
