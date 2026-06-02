@@ -213,4 +213,9 @@ void registrarAlerta(String tipo) {
 // ─── Converte nível numérico para string descritiva ──────────
 String nivelParaString(int nivel) {
   switch (nivel) {
-    
+     case 0: return "NORMAL";
+    case 1: return "ATENCAO";
+    case 2: return "CRITICO";
+    default: return "DESCONHECIDO";
+  }
+}
