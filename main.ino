@@ -61,3 +61,7 @@ void setup() {
     for (int i = 0; i < 5; i++) {
     historico[i] = {0, 0, "vazio"};
   }
+
+Serial.println("==============================================");
+  Serial.println(" OrbitalSense — Estacao IoT Inicializando...");
+  Serial.println("==============================================");
