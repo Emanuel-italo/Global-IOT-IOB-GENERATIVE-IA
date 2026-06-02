@@ -178,3 +178,6 @@ void processarBotoes() {
   if (statusBranco == HIGH && flagBranco == HIGH) {
     // Borda de subida: ação ao soltar
     flagBranco = LOW;
+    modoAutomatico = !modoAutomatico;
+    alertaManual   = false; // cancela alerta manual ao trocar modo
+    Serial.print("[BOTAO BRANCO] Modo automatico: ");
