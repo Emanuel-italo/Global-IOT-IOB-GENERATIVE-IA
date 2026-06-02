@@ -103,3 +103,11 @@ server.on("/sensor",  HTTP_GET,  handleSensor);
   Serial.println("   POST /reset    — zera contador de alertas");
   Serial.println("==============================================\n");
 }
+
+void loop() {
+  server.handleClient();  // processa requisições HTTP
+  processarBotoes();      // detecta pulsos nos botões
+  lerSensor();            // lê potenciômetro e define nível
+  atualizarLEDs();        // acende LED conforme nível
+  delay(50);
+}
