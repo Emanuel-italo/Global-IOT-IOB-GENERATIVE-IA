@@ -90,3 +90,9 @@ server.on("/status",  HTTP_GET,  handleStatus);
 server.on("/sensor",  HTTP_GET,  handleSensor);
   server.on("/alertas", HTTP_GET,  handleAlertas);
   server.on("/reset",   HTTP_POST, handleReset);
+
+  server.onNotFound(handleNotFound);
+
+  server.begin();
+  Serial.println("[HTTP] WebServer iniciado na porta 80");
+  Serial.println("==============================================");
