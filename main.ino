@@ -204,3 +204,6 @@ void processarBotoes() {
     }
   }
 }
+
+void registrarAlerta(String tipo) {
+  historico[idxHistorico] = {millis(), valorAnalog, tipo};
