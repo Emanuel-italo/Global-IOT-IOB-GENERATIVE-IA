@@ -77,3 +77,7 @@ Serial.println("==============================================");
     Serial.print(".");
     tentativas++;
   }
+
+    if (WiFi.status() == WL_CONNECTED) {
+    Serial.println("\n[WiFi] CONECTADO!");
+    Serial.print("[WiFi] IP da Estacao: ");
