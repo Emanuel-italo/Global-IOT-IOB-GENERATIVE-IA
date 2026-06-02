@@ -146,3 +146,17 @@ void reconectaMQTT() {
   if (!MQTT.connected()) {
     Serial.print("[MQTT] Conectando ao Broker... ");
     String clientId = String(ID_MQTT) + "-" + String(random(0xffff), HEX);
+
+        if (MQTT.connect(clientId.c_str())) {
+      Serial.println("OK!");
+      MQTT.subscribe(TOPIC_SUB_RESET);
+      MQTT.subscribe(TOPIC_SUB_MODO);
+      MQTT.subscribe(TOPIC_SUB_BOMBA);
+      publicarTudo();
+    } else {
+      Serial.print("Falha, rc=");
+      Serial.print(MQTT.state());
+      Serial.println(" Nova tentativa automatica...");
+    }
+  }
+}
