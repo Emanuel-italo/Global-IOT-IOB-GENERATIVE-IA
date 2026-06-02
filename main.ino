@@ -88,3 +88,5 @@ Serial.println("==============================================");
 
 server.on("/status",  HTTP_GET,  handleStatus);
 server.on("/sensor",  HTTP_GET,  handleSensor);
+  server.on("/alertas", HTTP_GET,  handleAlertas);
+  server.on("/reset",   HTTP_POST, handleReset);
