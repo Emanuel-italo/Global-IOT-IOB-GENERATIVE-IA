@@ -62,3 +62,10 @@ void initMQTT();
 void reconectaMQTT();
 void verificaConexoes();
 void callbackMQTT(char* topic, byte* payload, unsigned int length);
+
+void lerSensor();
+void processarBotoes();
+void atualizarLEDs();
+void atualizarLCD();
+void registrarAlerta(String tipo);
+String nivelParaString(int nivel);
