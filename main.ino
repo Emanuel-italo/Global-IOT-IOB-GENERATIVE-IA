@@ -85,3 +85,10 @@ void setup() {
    lcd.print("OrbitalAgro IoT");
   lcd.setCursor(0, 1);
   lcd.print("Iniciando...");
+
+   // Configuração dos Pinos
+  pinMode(PIN_BT_BRANCO, INPUT_PULLUP);
+  pinMode(PIN_BT_PRETO,  INPUT_PULLUP);
+  pinMode(PIN_LED_G,     OUTPUT);
+  pinMode(PIN_LED_Y,     OUTPUT);
+  pinMode(PIN_LED_R,     OUTPUT);
