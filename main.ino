@@ -127,3 +127,11 @@ void initWiFi() {
   Serial.print("[WiFi] Conectando a ");
   Serial.println(SSID);
   WiFi.begin(SSID, PASSWORD, 6);
+
+    while (WiFi.status() != WL_CONNECTED) { 
+    delay(200); 
+    Serial.print(".");
+  }
+  Serial.println("\n[WiFi] Conectado!");
+}
+
