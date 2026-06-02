@@ -233,3 +233,7 @@ void handleStatus() {
   doc["alerta_manual_ativo"]= alertaManual;
   doc["total_alertas"]      = contadorAlertas;
   doc["nivel_atual"]        = nivelParaString(nivelRisco);
+
+    String resposta;
+  serializeJson(doc, resposta);
+  server.send(200, "application/json", resposta);
