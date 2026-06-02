@@ -25,3 +25,8 @@ const char* PASSWORD    = "";
 const char* BROKER_MQTT = "broker.hivemq.com";
 const int   BROKER_PORT = 1883;
 const char* ID_MQTT     = "orbital_agro_rm561337";
+
+// Tópicos de Comunicação
+const char* TOPIC_PUB_STATUS = "orbitalsense/fiap2tds/RM561337/status";
+const char* TOPIC_PUB_SENSOR = "orbitalsense/fiap2tds/RM561337/sensor";
+const char* TOPIC_PUB_ALERTA = "orbitalsense/fiap2tds/RM561337/alertas";
