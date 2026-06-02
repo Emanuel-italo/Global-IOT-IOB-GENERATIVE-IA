@@ -56,3 +56,8 @@ void setup() {
 
     digitalWrite(LED_GRE, LOW);
   digitalWrite(LED_YEL, LOW);
+  digitalWrite(LED_RED, LOW);
+
+    for (int i = 0; i < 5; i++) {
+    historico[i] = {0, 0, "vazio"};
+  }
