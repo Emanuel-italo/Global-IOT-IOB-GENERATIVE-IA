@@ -124,3 +124,11 @@ void lerSensor() {
   } else {
     nivelRisco = 2;  // CRÍTICO
   }
+
+    if (nivelAnterior != 2 && nivelRisco == 2) {
+    contadorAlertas++;
+    registrarAlerta("AUTOMATICO_CRITICO");
+    Serial.print("[ALERTA] Nivel CRITICO detectado! Valor ADC: ");
+    Serial.println(valorAnalog);
+  }
+}
