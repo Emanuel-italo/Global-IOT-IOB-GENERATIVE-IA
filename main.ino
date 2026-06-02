@@ -92,3 +92,16 @@ void setup() {
   pinMode(PIN_LED_G,     OUTPUT);
   pinMode(PIN_LED_Y,     OUTPUT);
   pinMode(PIN_LED_R,     OUTPUT);
+
+    digitalWrite(PIN_LED_G, LOW);
+    digitalWrite(PIN_LED_Y, LOW);
+    digitalWrite(PIN_LED_R, LOW);
+
+      // Limpa histórico
+  for (int i = 0; i < 5; i++) historico[i] = {0, 0, "vazio"};
+
+  initWiFi();
+  initMQTT();
+  delay(1000);
+  lcd.clear(); // Limpa a mensagem de inicialização
+}
