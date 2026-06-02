@@ -34,3 +34,7 @@ const char* TOPIC_PUB_ALERTA = "orbitalsense/fiap2tds/RM561337/alertas";
 const char* TOPIC_SUB_RESET  = "orbitalsense/fiap2tds/RM561337/reset";
 const char* TOPIC_SUB_MODO   = "orbitalsense/fiap2tds/RM561337/cmd/modo";
 const char* TOPIC_SUB_BOMBA  = "orbitalsense/fiap2tds/RM561337/cmd/bomba";
+
+WiFiClient   espClient;
+PubSubClient MQTT(espClient);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
