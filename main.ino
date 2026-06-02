@@ -122,3 +122,8 @@ processarBotoes();
   
   delay(50);
 }
+
+void initWiFi() {
+  Serial.print("[WiFi] Conectando a ");
+  Serial.println(SSID);
+  WiFi.begin(SSID, PASSWORD, 6);
