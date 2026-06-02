@@ -139,3 +139,10 @@ void initMQTT() {
   MQTT.setServer(BROKER_MQTT, BROKER_PORT);
   MQTT.setCallback(callbackMQTT);
 }
+
+void reconectaMQTT() {
+  if (WiFi.status() != WL_CONNECTED) return;
+
+  if (!MQTT.connected()) {
+    Serial.print("[MQTT] Conectando ao Broker... ");
+    String clientId = String(ID_MQTT) + "-" + String(random(0xffff), HEX);
