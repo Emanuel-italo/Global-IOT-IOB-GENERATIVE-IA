@@ -23,3 +23,12 @@ int  contadorAlertas  = 0;    // total de alertas críticos detectados
 bool flagBranco       = LOW;  // detecção de borda botão branco
 bool flagPreto        = LOW;  // detecção de borda botão preto
 bool alertaManual     = false;// ativado por pulso no botão preto
+
+
+struct Alerta {
+  unsigned long timestamp;
+  int valor;
+  String tipo;
+};
+Alerta historico[5];
+int idxHistorico = 0;
