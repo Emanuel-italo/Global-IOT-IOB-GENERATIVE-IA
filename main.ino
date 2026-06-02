@@ -105,3 +105,8 @@ void setup() {
   delay(1000);
   lcd.clear(); // Limpa a mensagem de inicialização
 }
+
+void loop() {
+  // Verifica conexões de forma não-bloqueante (Padrão Clean Code)
+  verificaConexoes();
+  MQTT.loop();
