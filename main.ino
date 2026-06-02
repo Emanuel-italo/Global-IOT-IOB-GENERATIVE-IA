@@ -96,3 +96,6 @@ server.on("/sensor",  HTTP_GET,  handleSensor);
   server.begin();
   Serial.println("[HTTP] WebServer iniciado na porta 80");
   Serial.println("==============================================");
+   Serial.println(" ENDPOINTS DISPONIVEIS:");
+  Serial.println("   GET  /status   — estado geral do sistema");
+  Serial.println("   GET  /sensor   — leitura atual + nivel de risco");
