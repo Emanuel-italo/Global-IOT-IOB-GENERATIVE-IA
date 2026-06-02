@@ -81,3 +81,7 @@ Serial.println("==============================================");
     if (WiFi.status() == WL_CONNECTED) {
     Serial.println("\n[WiFi] CONECTADO!");
     Serial.print("[WiFi] IP da Estacao: ");
+        Serial.println(WiFi.localIP());
+  } else {
+    Serial.println("\n[WiFi] FALHA NA CONEXAO — operando offline");
+  }
