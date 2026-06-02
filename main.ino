@@ -175,4 +175,6 @@ void processarBotoes() {
     // Borda de descida: botão pressionado
     flagBranco = HIGH;
   }
-  
+  if (statusBranco == HIGH && flagBranco == HIGH) {
+    // Borda de subida: ação ao soltar
+    flagBranco = LOW;
