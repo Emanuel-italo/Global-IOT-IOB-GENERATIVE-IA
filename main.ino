@@ -151,3 +151,6 @@ if (modoAutomatico) {
     delay(400);
         digitalWrite(LED_GRE, LOW);
     digitalWrite(LED_YEL, HIGH);
+        delay(400);
+    digitalWrite(LED_YEL, LOW);
+    digitalWrite(LED_RED, HIGH);
