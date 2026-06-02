@@ -149,3 +149,5 @@ void atualizarLEDs() {
 if (modoAutomatico) {
     digitalWrite(LED_GRE, HIGH);
     delay(400);
+        digitalWrite(LED_GRE, LOW);
+    digitalWrite(LED_YEL, HIGH);
