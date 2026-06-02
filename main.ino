@@ -170,3 +170,9 @@ if (modoAutomatico) {
 void processarBotoes() {
   // ── Botão BRANCO: ativa/desativa modo automático ───────────
   bool statusBranco = digitalRead(BT_BRANCO);
+
+    if (statusBranco == LOW && flagBranco == LOW) {
+    // Borda de descida: botão pressionado
+    flagBranco = HIGH;
+  }
+  
