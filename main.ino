@@ -56,3 +56,9 @@ struct Alerta {
 };
 Alerta historico[5];
 int idxHistorico = 0;
+
+void initWiFi();
+void initMQTT();
+void reconectaMQTT();
+void verificaConexoes();
+void callbackMQTT(char* topic, byte* payload, unsigned int length);
