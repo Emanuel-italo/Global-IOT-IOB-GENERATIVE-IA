@@ -99,3 +99,7 @@ server.on("/sensor",  HTTP_GET,  handleSensor);
    Serial.println(" ENDPOINTS DISPONIVEIS:");
   Serial.println("   GET  /status   — estado geral do sistema");
   Serial.println("   GET  /sensor   — leitura atual + nivel de risco");
+    Serial.println("   GET  /alertas  — historico de alertas");
+  Serial.println("   POST /reset    — zera contador de alertas");
+  Serial.println("==============================================\n");
+}
