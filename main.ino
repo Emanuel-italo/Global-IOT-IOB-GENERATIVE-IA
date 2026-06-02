@@ -111,3 +111,8 @@ void loop() {
   atualizarLEDs();        // acende LED conforme nível
   delay(50);
 }
+
+void lerSensor() {
+  valorAnalog = analogRead(POT);  // 0 a 4095
+
+  int nivelAnterior = nivelRisco;
