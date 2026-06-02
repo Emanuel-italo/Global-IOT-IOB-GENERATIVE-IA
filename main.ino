@@ -47,3 +47,6 @@ String nivelParaString(int nivel);
 void setup() {
   Serial.begin(115200);
   delay(500);
+
+  pinMode(BT_BRANCO, INPUT_PULLUP);
+  pinMode(BT_PRETO,  INPUT_PULLUP);
