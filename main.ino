@@ -53,3 +53,6 @@ void setup() {
   pinMode(LED_GRE,   OUTPUT);
   pinMode(LED_YEL,   OUTPUT);
   pinMode(LED_RED,   OUTPUT);
+
+    digitalWrite(LED_GRE, LOW);
+  digitalWrite(LED_YEL, LOW);
