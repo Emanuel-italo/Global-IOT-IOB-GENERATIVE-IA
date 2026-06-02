@@ -160,3 +160,8 @@ void reconectaMQTT() {
     }
   }
 }
+
+void verificaConexoes() {
+  if (WiFi.status() != WL_CONNECTED) initWiFi();
+  if (!MQTT.connected()) reconectaMQTT();
+}
