@@ -70,3 +70,10 @@ Serial.println("==============================================");
   Serial.print("[WiFi] Conectando a: ");
   Serial.println(SSID);
   WiFi.begin(SSID, PASSWORD);
+
+    int tentativas = 0;
+  while (WiFi.status() != WL_CONNECTED && tentativas < 20) {
+    delay(500);
+    Serial.print(".");
+    tentativas++;
+  }
