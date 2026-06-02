@@ -194,3 +194,13 @@ void processarBotoes() {
     if (statusPreto == HIGH && flagPreto == HIGH) {
     flagPreto    = LOW;
     alertaManual = !alertaManual;
+
+        if (alertaManual) {
+      contadorAlertas++;
+      registrarAlerta("MANUAL_BOTAO_PRETO");
+      Serial.println("[BOTAO PRETO] ALERTA MANUAL ATIVADO!");
+    } else {
+      Serial.println("[BOTAO PRETO] Alerta manual desativado.");
+    }
+  }
+}
