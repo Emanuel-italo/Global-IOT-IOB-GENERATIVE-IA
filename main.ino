@@ -38,3 +38,13 @@ const char* TOPIC_SUB_BOMBA  = "orbitalsense/fiap2tds/RM561337/cmd/bomba";
 WiFiClient   espClient;
 PubSubClient MQTT(espClient);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+unsigned long ultimaPublicacao = 0;
+
+int  valorAnalog      = 0;
+int  nivelRisco       = STATUS_SECO;
+bool modoAutomatico   = false;
+int  contadorAlertas  = 0;
+bool flagBranco       = LOW;
+bool flagPreto        = LOW;
+bool alertaManual     = false;
