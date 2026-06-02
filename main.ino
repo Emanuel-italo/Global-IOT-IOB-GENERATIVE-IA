@@ -69,3 +69,8 @@ void atualizarLEDs();
 void atualizarLCD();
 void registrarAlerta(String tipo);
 String nivelParaString(int nivel);
+
+void publicarTudo();
+String jsonStatus();
+String jsonSensor();
+String jsonAlertas();
