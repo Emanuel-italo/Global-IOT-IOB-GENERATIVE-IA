@@ -50,3 +50,6 @@ void setup() {
 
   pinMode(BT_BRANCO, INPUT_PULLUP);
   pinMode(BT_PRETO,  INPUT_PULLUP);
+  pinMode(LED_GRE,   OUTPUT);
+  pinMode(LED_YEL,   OUTPUT);
+  pinMode(LED_RED,   OUTPUT);
