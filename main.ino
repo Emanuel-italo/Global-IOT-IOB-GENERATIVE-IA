@@ -159,3 +159,7 @@ if (modoAutomatico) {
     digitalWrite(LED_RED, LOW);
     return;
   }
+
+    // Modo normal: LED fixo conforme nível de risco
+  digitalWrite(LED_GRE, nivelRisco == 0 ? HIGH : LOW);
+  digitalWrite(LED_YEL, nivelRisco == 1 ? HIGH : LOW);
