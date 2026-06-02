@@ -183,3 +183,10 @@ void processarBotoes() {
     Serial.print("[BOTAO BRANCO] Modo automatico: ");
     Serial.println(modoAutomatico ? "ATIVADO" : "DESATIVADO");
   }
+
+    // ── Botão PRETO: aciona alerta manual + registra na Serial ─
+  bool statusPreto = digitalRead(BT_PRETO);
+
+  if (statusPreto == LOW && flagPreto == LOW) {
+    flagPreto = HIGH;
+  }
