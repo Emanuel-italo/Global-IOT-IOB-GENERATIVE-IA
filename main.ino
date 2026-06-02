@@ -219,3 +219,7 @@ String nivelParaString(int nivel) {
     default: return "DESCONHECIDO";
   }
 }
+
+void handleStatus() {
+  // Adiciona cabeçalho CORS para dashboard externo
+  server.sendHeader("Access-Control-Allow-Origin", "*");
