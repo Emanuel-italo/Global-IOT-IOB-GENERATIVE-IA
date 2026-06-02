@@ -136,5 +136,12 @@ void lerSensor() {
 void atualizarLEDs() {
   // Alerta manual tem prioridade: pisca o LED vermelho
   if (alertaManual) {
+        digitalWrite(LED_GRE, LOW);
+    digitalWrite(LED_YEL, LOW);
+    digitalWrite(LED_RED, HIGH);
+    delay(150);
+    digitalWrite(LED_RED, LOW);
+    delay(150);
+    return;
   
 }
