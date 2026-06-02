@@ -165,3 +165,8 @@ if (modoAutomatico) {
   digitalWrite(LED_YEL, nivelRisco == 1 ? HIGH : LOW);
     digitalWrite(LED_RED, nivelRisco == 2 ? HIGH : LOW);
 }
+
+// ─── Processamento dos Botões (detecção de borda) ─────────────
+void processarBotoes() {
+  // ── Botão BRANCO: ativa/desativa modo automático ───────────
+  bool statusBranco = digitalRead(BT_BRANCO);
