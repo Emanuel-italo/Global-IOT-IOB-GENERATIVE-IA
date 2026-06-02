@@ -207,3 +207,5 @@ void processarBotoes() {
 
 void registrarAlerta(String tipo) {
   historico[idxHistorico] = {millis(), valorAnalog, tipo};
+    idxHistorico = (idxHistorico + 1) % 5;
+}
