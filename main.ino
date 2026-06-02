@@ -116,3 +116,11 @@ void lerSensor() {
   valorAnalog = analogRead(POT);  // 0 a 4095
 
   int nivelAnterior = nivelRisco;
+
+    if (valorAnalog <= 1365) {
+    nivelRisco = 0;  // NORMAL
+  } else if (valorAnalog <= 2730) {
+    nivelRisco = 1;  // ATENÇÃO
+  } else {
+    nivelRisco = 2;  // CRÍTICO
+  }
