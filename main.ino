@@ -110,3 +110,7 @@ void loop() {
   // Verifica conexões de forma não-bloqueante (Padrão Clean Code)
   verificaConexoes();
   MQTT.loop();
+processarBotoes();
+  lerSensor();
+  atualizarLEDs();
+  atualizarLCD(); // Passo C: Função de atualização da tela chamada no loop
