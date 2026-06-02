@@ -237,3 +237,6 @@ void handleStatus() {
     String resposta;
   serializeJson(doc, resposta);
   server.send(200, "application/json", resposta);
+
+    Serial.println("[API GET /status] Requisicao atendida.");
+}
