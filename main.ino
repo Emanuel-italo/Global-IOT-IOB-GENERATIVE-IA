@@ -114,3 +114,11 @@ processarBotoes();
   lerSensor();
   atualizarLEDs();
   atualizarLCD(); // Passo C: Função de atualização da tela chamada no loop
+
+    if (millis() - ultimaPublicacao >= INTERVALO_PUBLICACAO) {
+    ultimaPublicacao = millis();
+    publicarTudo();
+  }
+  
+  delay(50);
+}
