@@ -30,3 +30,7 @@ const char* ID_MQTT     = "orbital_agro_rm561337";
 const char* TOPIC_PUB_STATUS = "orbitalsense/fiap2tds/RM561337/status";
 const char* TOPIC_PUB_SENSOR = "orbitalsense/fiap2tds/RM561337/sensor";
 const char* TOPIC_PUB_ALERTA = "orbitalsense/fiap2tds/RM561337/alertas";
+
+const char* TOPIC_SUB_RESET  = "orbitalsense/fiap2tds/RM561337/reset";
+const char* TOPIC_SUB_MODO   = "orbitalsense/fiap2tds/RM561337/cmd/modo";
+const char* TOPIC_SUB_BOMBA  = "orbitalsense/fiap2tds/RM561337/cmd/bomba";
