@@ -48,3 +48,11 @@ int  contadorAlertas  = 0;
 bool flagBranco       = LOW;
 bool flagPreto        = LOW;
 bool alertaManual     = false;
+
+struct Alerta {
+  unsigned long timestamp;
+  int valor;
+  String tipo;
+};
+Alerta historico[5];
+int idxHistorico = 0;
