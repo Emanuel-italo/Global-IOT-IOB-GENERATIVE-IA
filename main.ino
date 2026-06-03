@@ -200,3 +200,7 @@ void processarBotoes() {
     flagPreto    = LOW;
     alertaManual = !alertaManual;
   
+    if (alertaManual) {
+      contadorAlertas++;
+      registrarAlerta("MANUAL_BOTAO_PRETO");
+    
