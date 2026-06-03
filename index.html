@@ -39,3 +39,16 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, #ffffff11, transparent),
+        radial-gradient(1px 1px at 40% 60%, #ffffff08, transparent),
+        radial-gradient(1px 1px at 70% 10%, #00ff8815, transparent),
+        radial-gradient(1px 1px at 85% 75%, #ffffff10, transparent),
+        radial-gradient(1px 1px at 55% 40%, #ffffff05, transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
