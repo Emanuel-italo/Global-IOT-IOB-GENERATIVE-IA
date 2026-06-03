@@ -301,4 +301,6 @@ void callbackMQTT(char* topic, byte* payload, unsigned int length) {
 // ─── Módulo MQTT Envio de JSON ────────────────────────────────
 void publicarTudo() {
   if (!MQTT.connected()) return;
+  MQTT.publish(TOPIC_PUB_STATUS, jsonStatus().c_str(), true);
+  MQTT.publish(TOPIC_PUB_SENSOR, jsonSensor().c_str(), true);
 }
