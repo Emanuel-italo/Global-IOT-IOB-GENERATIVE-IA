@@ -175,3 +175,13 @@
       position: relative;
       overflow: hidden;
     }
+
+        .gauge-circle::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      opacity: 0.08;
+      transition: background .4s;
+    }
+
