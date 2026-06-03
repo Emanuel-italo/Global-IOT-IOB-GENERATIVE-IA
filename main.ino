@@ -310,3 +310,7 @@ String jsonStatus() {
   StaticJsonDocument<256> doc;
   doc["sistema"]             = "OrbitalAgro";
   doc["uptime_ms"]           = millis();
+    doc["modo_automatico"]     = modoAutomatico;
+  doc["alerta_manual_ativo"] = alertaManual;
+  doc["total_alertas"]       = contadorAlertas;
+  doc["nivel_atual"]         = nivelParaString(nivelRisco);
