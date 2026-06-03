@@ -203,4 +203,9 @@ void processarBotoes() {
     if (alertaManual) {
       contadorAlertas++;
       registrarAlerta("MANUAL_BOTAO_PRETO");
-    
+          Serial.println("[BOMBA] Acionada fisicamente na fazenda!");
+    } else {
+      Serial.println("[BOMBA] Desativada fisicamente.");
+    }
+  }
+}
