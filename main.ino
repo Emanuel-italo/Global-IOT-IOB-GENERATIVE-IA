@@ -305,3 +305,8 @@ void publicarTudo() {
   MQTT.publish(TOPIC_PUB_SENSOR, jsonSensor().c_str(), true);
     MQTT.publish(TOPIC_PUB_ALERTA, jsonAlertas().c_str(), true);
 }
+
+String jsonStatus() {
+  StaticJsonDocument<256> doc;
+  doc["sistema"]             = "OrbitalAgro";
+  doc["uptime_ms"]           = millis();
