@@ -268,3 +268,12 @@ String nivelParaString(int nivel) {
 void callbackMQTT(char* topic, byte* payload, unsigned int length) {
   String t = String(topic);
   Serial.println("[MQTT] Comando Remoto recebido.");
+
+    if (t == TOPIC_SUB_RESET) {
+    contadorAlertas = 0;
+    idxHistorico    = 0;
+    alertaManual    = false;
+    for (int i = 0; i < 5; i++) historico[i] = {0, 0, "vazio"};
+    Serial.println(">> Sistema Resetado pelo Dashboard!");
+    publicarTudo();
+  }
