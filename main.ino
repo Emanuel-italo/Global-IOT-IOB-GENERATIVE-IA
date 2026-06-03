@@ -263,3 +263,8 @@ String nivelParaString(int nivel) {
     default: return "DESCONHECIDO";
   }
 }
+
+// ─── Módulo MQTT Recebimento de Comandos ──────────────────────
+void callbackMQTT(char* topic, byte* payload, unsigned int length) {
+  String t = String(topic);
+  Serial.println("[MQTT] Comando Remoto recebido.");
