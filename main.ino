@@ -228,3 +228,9 @@ void atualizarLEDs() {
   digitalWrite(PIN_LED_Y, nivelRisco == STATUS_MODERADO ? HIGH : LOW);
   digitalWrite(PIN_LED_G, nivelRisco == STATUS_UMIDO ? HIGH : LOW);
 }
+
+void atualizarLCD() {
+  lcd.setCursor(0, 0);
+  lcd.print("Umid:");
+  lcd.print(valorAnalog);
+  lcd.print("   ");
