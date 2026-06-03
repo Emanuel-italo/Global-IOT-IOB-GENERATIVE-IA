@@ -277,3 +277,10 @@ void callbackMQTT(char* topic, byte* payload, unsigned int length) {
     Serial.println(">> Sistema Resetado pelo Dashboard!");
     publicarTudo();
   }
+
+    else if (t == TOPIC_SUB_MODO) {
+    modoAutomatico = !modoAutomatico;
+    alertaManual   = false;
+    Serial.println(modoAutomatico ? ">> Modo AUTO via Dashboard" : ">> Modo MANUAL via Dashboard");
+    publicarTudo();
+  } 
