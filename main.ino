@@ -216,5 +216,9 @@ void atualizarLEDs() {
 
     digitalWrite(PIN_LED_G, LOW);
     digitalWrite(PIN_LED_Y, LOW);
-    
+    digitalWrite(PIN_LED_R, HIGH);
+    delay(100);
+    digitalWrite(PIN_LED_R, LOW);
+    delay(100);
+    return;
   }
