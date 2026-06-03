@@ -181,3 +181,13 @@ void lerSensor() {
     Serial.printf("[ALERTA] Solo extremamente SECO! ADC: %d\n", valorAnalog);
   }
 }
+
+void processarBotoes() {
+  bool statusBranco = digitalRead(PIN_BT_BRANCO);
+  if (statusBranco == LOW  && flagBranco == LOW)  flagBranco = HIGH;
+  if (statusBranco == HIGH && flagBranco == HIGH) {
+    flagBranco = LOW;
+    modoAutomatico = !modoAutomatico;
+    alertaManual   = false;
+    Serial.println(modoAutomatico ? "[SISTEMA] Irrigação AUTO Ativada" : "[SISTEMA] Controle MANUAL");
+  }
