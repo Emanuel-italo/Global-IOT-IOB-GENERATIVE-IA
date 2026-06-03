@@ -222,3 +222,9 @@ void atualizarLEDs() {
     delay(100);
     return;
   }
+
+    // 2. Comportamento Padrão: LEDs refletem EXATAMENTE a umidade do solo
+  digitalWrite(PIN_LED_R, nivelRisco == STATUS_SECO ? HIGH : LOW);
+  digitalWrite(PIN_LED_Y, nivelRisco == STATUS_MODERADO ? HIGH : LOW);
+  digitalWrite(PIN_LED_G, nivelRisco == STATUS_UMIDO ? HIGH : LOW);
+}
