@@ -191,3 +191,8 @@ void processarBotoes() {
     alertaManual   = false;
     Serial.println(modoAutomatico ? "[SISTEMA] Irrigação AUTO Ativada" : "[SISTEMA] Controle MANUAL");
   }
+
+
+  
+  bool statusPreto = digitalRead(PIN_BT_PRETO);
+  if (statusPreto == LOW  && flagPreto == LOW)  flagPreto = HIGH;
