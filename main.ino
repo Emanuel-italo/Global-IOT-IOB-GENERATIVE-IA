@@ -1,3 +1,20 @@
+/*
+ * ============================================================
+ * PROJETO: OrbitalAgro — Estação Terrestre de Validação Climática
+ *
+ * ARQUITETURA:
+ * - Refatorado com base nas boas práticas (Separação de módulos)
+ * - Conexão MQTT não-bloqueante (verificaConexoes)
+ * - Integração completa com Display LCD I2C
+ *
+ * HARDWARE (Wokwi):
+ * OUTPUT: Pino 17 (LED Verde), 4 (LED Amarelo), 2 (LED Vermelho)
+ * INPUT:  Pino 18 (Botão Preto), 19 (Botão Branco)
+ * ANALOG: Pino 33 (Potenciômetro/Sensor de Umidade do Solo)
+ * I2C:    Pinos 21 (SDA) e 22 (SCL) para o LCD 16x2
+ * ============================================================
+ */
+
 #include <Arduino.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
@@ -37,8 +54,9 @@ const char* TOPIC_SUB_BOMBA  = "orbitalsense/fiap2tds/RM561337/cmd/bomba";
 
 WiFiClient   espClient;
 PubSubClient MQTT(espClient);
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+LiquidCrystal_I2C lcd(0x27, 16, 2); // Passo A: Declaração do LCD
 
+// ─── Variáveis de Estado (Memória do Sistema) ─────────────────
 unsigned long ultimaPublicacao = 0;
 
 int  valorAnalog      = 0;
@@ -57,6 +75,7 @@ struct Alerta {
 Alerta historico[5];
 int idxHistorico = 0;
 
+// ─── Protótipos das Funções ───────────────────────────────────
 void initWiFi();
 void initMQTT();
 void reconectaMQTT();
@@ -75,6 +94,7 @@ String jsonStatus();
 String jsonSensor();
 String jsonAlertas();
 
+// ─────────────────────────────────────────────────────────────
 void setup() {
   Serial.begin(115200);
 
@@ -82,22 +102,22 @@ void setup() {
   lcd.init();
   lcd.backlight();
   lcd.setCursor(0, 0);
-   lcd.print("OrbitalAgro IoT");
+  lcd.print("OrbitalAgro IoT");
   lcd.setCursor(0, 1);
   lcd.print("Iniciando...");
 
-   // Configuração dos Pinos
+  // Configuração dos Pinos
   pinMode(PIN_BT_BRANCO, INPUT_PULLUP);
   pinMode(PIN_BT_PRETO,  INPUT_PULLUP);
   pinMode(PIN_LED_G,     OUTPUT);
   pinMode(PIN_LED_Y,     OUTPUT);
   pinMode(PIN_LED_R,     OUTPUT);
 
-    digitalWrite(PIN_LED_G, LOW);
-    digitalWrite(PIN_LED_Y, LOW);
-    digitalWrite(PIN_LED_R, LOW);
+  digitalWrite(PIN_LED_G, LOW);
+  digitalWrite(PIN_LED_Y, LOW);
+  digitalWrite(PIN_LED_R, LOW);
 
-      // Limpa histórico
+  // Limpa histórico
   for (int i = 0; i < 5; i++) historico[i] = {0, 0, "vazio"};
 
   initWiFi();
@@ -106,16 +126,20 @@ void setup() {
   lcd.clear(); // Limpa a mensagem de inicialização
 }
 
+// ─────────────────────────────────────────────────────────────
 void loop() {
   // Verifica conexões de forma não-bloqueante (Padrão Clean Code)
   verificaConexoes();
   MQTT.loop();
-processarBotoes();
+
+  // Executa leituras e atuadores
+  processarBotoes();
   lerSensor();
   atualizarLEDs();
   atualizarLCD(); // Passo C: Função de atualização da tela chamada no loop
 
-    if (millis() - ultimaPublicacao >= INTERVALO_PUBLICACAO) {
+  // Publicação temporizada
+  if (millis() - ultimaPublicacao >= INTERVALO_PUBLICACAO) {
     ultimaPublicacao = millis();
     publicarTudo();
   }
@@ -123,12 +147,13 @@ processarBotoes();
   delay(50);
 }
 
+// ─── Módulo de Rede (Baseado no challenge iotv2) ──────────────
 void initWiFi() {
   Serial.print("[WiFi] Conectando a ");
   Serial.println(SSID);
   WiFi.begin(SSID, PASSWORD, 6);
-
-    while (WiFi.status() != WL_CONNECTED) { 
+  
+  while (WiFi.status() != WL_CONNECTED) { 
     delay(200); 
     Serial.print(".");
   }
@@ -146,8 +171,8 @@ void reconectaMQTT() {
   if (!MQTT.connected()) {
     Serial.print("[MQTT] Conectando ao Broker... ");
     String clientId = String(ID_MQTT) + "-" + String(random(0xffff), HEX);
-
-        if (MQTT.connect(clientId.c_str())) {
+    
+    if (MQTT.connect(clientId.c_str())) {
       Serial.println("OK!");
       MQTT.subscribe(TOPIC_SUB_RESET);
       MQTT.subscribe(TOPIC_SUB_MODO);
@@ -166,6 +191,7 @@ void verificaConexoes() {
   if (!MQTT.connected()) reconectaMQTT();
 }
 
+// ─── Módulo de Sensores e Atuadores ───────────────────────────
 void lerSensor() {
   valorAnalog = analogRead(PIN_POT);
   int nivelAnterior = nivelRisco;
@@ -174,7 +200,6 @@ void lerSensor() {
   else if (valorAnalog <= 2730) nivelRisco = STATUS_MODERADO;
   else                          nivelRisco = STATUS_UMIDO;
 
-  
   if (nivelAnterior != STATUS_SECO && nivelRisco == STATUS_SECO) {
     contadorAlertas++;
     registrarAlerta("AUTOMATICO_CRITICO");
@@ -192,18 +217,16 @@ void processarBotoes() {
     Serial.println(modoAutomatico ? "[SISTEMA] Irrigação AUTO Ativada" : "[SISTEMA] Controle MANUAL");
   }
 
-
-  
   bool statusPreto = digitalRead(PIN_BT_PRETO);
   if (statusPreto == LOW  && flagPreto == LOW)  flagPreto = HIGH;
   if (statusPreto == HIGH && flagPreto == HIGH) {
     flagPreto    = LOW;
     alertaManual = !alertaManual;
-  
+    
     if (alertaManual) {
       contadorAlertas++;
       registrarAlerta("MANUAL_BOTAO_PRETO");
-          Serial.println("[BOMBA] Acionada fisicamente na fazenda!");
+      Serial.println("[BOMBA] Acionada fisicamente na fazenda!");
     } else {
       Serial.println("[BOMBA] Desativada fisicamente.");
     }
@@ -213,7 +236,6 @@ void processarBotoes() {
 void atualizarLEDs() {
   // 1. Prioridade Máxima: Se a bomba for ligada (física ou remotamente), pisca vermelho
   if (alertaManual) { 
-
     digitalWrite(PIN_LED_G, LOW);
     digitalWrite(PIN_LED_Y, LOW);
     digitalWrite(PIN_LED_R, HIGH);
@@ -223,24 +245,24 @@ void atualizarLEDs() {
     return;
   }
 
-    // 2. Comportamento Padrão: LEDs refletem EXATAMENTE a umidade do solo
+  // 2. Comportamento Padrão: LEDs refletem EXATAMENTE a umidade do solo
   digitalWrite(PIN_LED_R, nivelRisco == STATUS_SECO ? HIGH : LOW);
   digitalWrite(PIN_LED_Y, nivelRisco == STATUS_MODERADO ? HIGH : LOW);
   digitalWrite(PIN_LED_G, nivelRisco == STATUS_UMIDO ? HIGH : LOW);
 }
 
+// Passo C: A função do Display LCD implementada
 void atualizarLCD() {
   lcd.setCursor(0, 0);
   lcd.print("Umid:");
   lcd.print(valorAnalog);
-  lcd.print("   ");
-
-
-   lcd.setCursor(10, 0);
+  lcd.print("   "); // Sobrescreve números antigos com espaço vazio
+  
+  lcd.setCursor(10, 0);
   if(modoAutomatico) lcd.print("[AUTO]");
   else lcd.print("[MANU]");
 
-   lcd.setCursor(0, 1);
+  lcd.setCursor(0, 1);
   if(alertaManual) {
     lcd.print("BOMBA ATIVADA!  ");
   } else {
@@ -269,22 +291,20 @@ void callbackMQTT(char* topic, byte* payload, unsigned int length) {
   String t = String(topic);
   Serial.println("[MQTT] Comando Remoto recebido.");
 
-    if (t == TOPIC_SUB_RESET) {
+  if (t == TOPIC_SUB_RESET) {
     contadorAlertas = 0;
     idxHistorico    = 0;
     alertaManual    = false;
     for (int i = 0; i < 5; i++) historico[i] = {0, 0, "vazio"};
     Serial.println(">> Sistema Resetado pelo Dashboard!");
     publicarTudo();
-  }
-
-    else if (t == TOPIC_SUB_MODO) {
+  } 
+  else if (t == TOPIC_SUB_MODO) {
     modoAutomatico = !modoAutomatico;
     alertaManual   = false;
     Serial.println(modoAutomatico ? ">> Modo AUTO via Dashboard" : ">> Modo MANUAL via Dashboard");
     publicarTudo();
   } 
-
   else if (t == TOPIC_SUB_BOMBA) {
     alertaManual = !alertaManual;
     if (alertaManual) {
@@ -303,19 +323,19 @@ void publicarTudo() {
   if (!MQTT.connected()) return;
   MQTT.publish(TOPIC_PUB_STATUS, jsonStatus().c_str(), true);
   MQTT.publish(TOPIC_PUB_SENSOR, jsonSensor().c_str(), true);
-    MQTT.publish(TOPIC_PUB_ALERTA, jsonAlertas().c_str(), true);
+  MQTT.publish(TOPIC_PUB_ALERTA, jsonAlertas().c_str(), true);
 }
 
 String jsonStatus() {
   StaticJsonDocument<256> doc;
   doc["sistema"]             = "OrbitalAgro";
   doc["uptime_ms"]           = millis();
-    doc["modo_automatico"]     = modoAutomatico;
+  doc["modo_automatico"]     = modoAutomatico;
   doc["alerta_manual_ativo"] = alertaManual;
   doc["total_alertas"]       = contadorAlertas;
   doc["nivel_atual"]         = nivelParaString(nivelRisco);
-
-    String out; serializeJson(doc, out); return out;
+  
+  String out; serializeJson(doc, out); return out;
 }
 
 String jsonSensor() {
@@ -331,3 +351,22 @@ String jsonSensor() {
   leds["verde"]    = (nivelRisco == STATUS_UMIDO);
   leds["amarelo"]  = (nivelRisco == STATUS_MODERADO);
   leds["vermelho"] = (nivelRisco == STATUS_SECO);
+
+  String out; serializeJson(doc, out); return out;
+}
+
+String jsonAlertas() {
+  StaticJsonDocument<512> doc;
+  doc["total_alertas"] = contadorAlertas;
+  JsonArray arr = doc.createNestedArray("historico");
+
+  for (int i = 0; i < 5; i++) {
+    if (historico[i].timestamp > 0) {
+      JsonObject item = arr.createNestedObject();
+      item["timestamp_ms"] = historico[i].timestamp;
+      item["valor_adc"]    = historico[i].valor;
+      item["tipo"]         = historico[i].tipo;
+    }
+  }
+  String out; serializeJson(doc, out); return out;
+}
