@@ -314,3 +314,11 @@ String jsonStatus() {
   doc["alerta_manual_ativo"] = alertaManual;
   doc["total_alertas"]       = contadorAlertas;
   doc["nivel_atual"]         = nivelParaString(nivelRisco);
+
+    String out; serializeJson(doc, out); return out;
+}
+
+String jsonSensor() {
+  float percentual = (valorAnalog / 4095.0) * 100.0;
+  StaticJsonDocument<256> doc;
+  doc["sensor"]          = "umidade_solo";
