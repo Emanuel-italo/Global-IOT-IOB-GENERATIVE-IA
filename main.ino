@@ -322,3 +322,6 @@ String jsonSensor() {
   float percentual = (valorAnalog / 4095.0) * 100.0;
   StaticJsonDocument<256> doc;
   doc["sensor"]          = "umidade_solo";
+  doc["valor_adc"]       = valorAnalog;
+  doc["percentual"]      = serialized(String(percentual, 1));
+  doc["nivel_risco"]     = nivelRisco;
