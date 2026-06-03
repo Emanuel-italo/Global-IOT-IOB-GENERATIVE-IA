@@ -234,3 +234,8 @@ void atualizarLCD() {
   lcd.print("Umid:");
   lcd.print(valorAnalog);
   lcd.print("   ");
+
+
+   lcd.setCursor(10, 0);
+  if(modoAutomatico) lcd.print("[AUTO]");
+  else lcd.print("[MANU]");
