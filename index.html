@@ -89,3 +89,23 @@
       box-shadow: var(--glow-g);
       animation: pulse 3s ease-in-out infinite;
     }
+
+        @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 18px #00ff8844;
+      }
+
+      50% {
+        box-shadow: var(--glow-g);
+      }
+    }
+
+    .logo h1 {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 2px;
+    }
