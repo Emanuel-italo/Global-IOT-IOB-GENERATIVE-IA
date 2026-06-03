@@ -209,3 +209,7 @@ void processarBotoes() {
     }
   }
 }
+
+void atualizarLEDs() {
+  // 1. Prioridade Máxima: Se a bomba for ligada (física ou remotamente), pisca vermelho
+  if (alertaManual) { 
