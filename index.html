@@ -138,3 +138,21 @@
       margin-right: 5px;
       vertical-align: middle;
     }
+
+        @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .risk-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      transition: border-color .4s;
+    }
