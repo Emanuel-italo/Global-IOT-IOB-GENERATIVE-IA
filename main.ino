@@ -284,3 +284,16 @@ void callbackMQTT(char* topic, byte* payload, unsigned int length) {
     Serial.println(modoAutomatico ? ">> Modo AUTO via Dashboard" : ">> Modo MANUAL via Dashboard");
     publicarTudo();
   } 
+
+  else if (t == TOPIC_SUB_BOMBA) {
+    alertaManual = !alertaManual;
+    if (alertaManual) {
+      contadorAlertas++;
+      registrarAlerta("ACIONAMENTO_REMOTO");
+      Serial.println(">> Irrigação FORÇADA via Dashboard!");
+    } else {
+      Serial.println(">> Irrigação DESATIVADA via Dashboard");
+    }
+    publicarTudo();
+  }
+}
