@@ -325,3 +325,9 @@ String jsonSensor() {
   doc["valor_adc"]       = valorAnalog;
   doc["percentual"]      = serialized(String(percentual, 1));
   doc["nivel_risco"]     = nivelRisco;
+  doc["nivel_descricao"] = nivelParaString(nivelRisco);
+  
+  JsonObject leds = doc.createNestedObject("leds");
+  leds["verde"]    = (nivelRisco == STATUS_UMIDO);
+  leds["amarelo"]  = (nivelRisco == STATUS_MODERADO);
+  leds["vermelho"] = (nivelRisco == STATUS_SECO);
