@@ -213,3 +213,8 @@ void processarBotoes() {
 void atualizarLEDs() {
   // 1. Prioridade Máxima: Se a bomba for ligada (física ou remotamente), pisca vermelho
   if (alertaManual) { 
+
+    digitalWrite(PIN_LED_G, LOW);
+    digitalWrite(PIN_LED_Y, LOW);
+    
+  }
