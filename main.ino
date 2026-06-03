@@ -239,3 +239,13 @@ void atualizarLCD() {
    lcd.setCursor(10, 0);
   if(modoAutomatico) lcd.print("[AUTO]");
   else lcd.print("[MANU]");
+
+   lcd.setCursor(0, 1);
+  if(alertaManual) {
+    lcd.print("BOMBA ATIVADA!  ");
+  } else {
+    if(nivelRisco == STATUS_SECO)      lcd.print("ALERTA: SECO!   ");
+    else if(nivelRisco == STATUS_MODERADO) lcd.print("SOLO: MODERADO  ");
+    else                               lcd.print("SOLO: IDEAL     ");
+  }
+}
