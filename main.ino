@@ -303,4 +303,5 @@ void publicarTudo() {
   if (!MQTT.connected()) return;
   MQTT.publish(TOPIC_PUB_STATUS, jsonStatus().c_str(), true);
   MQTT.publish(TOPIC_PUB_SENSOR, jsonSensor().c_str(), true);
+    MQTT.publish(TOPIC_PUB_ALERTA, jsonAlertas().c_str(), true);
 }
