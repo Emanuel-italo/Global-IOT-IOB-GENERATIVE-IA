@@ -165,3 +165,19 @@ void verificaConexoes() {
   if (WiFi.status() != WL_CONNECTED) initWiFi();
   if (!MQTT.connected()) reconectaMQTT();
 }
+
+void lerSensor() {
+  valorAnalog = analogRead(PIN_POT);
+  int nivelAnterior = nivelRisco;
+
+  if      (valorAnalog <= 1365) nivelRisco = STATUS_SECO;
+  else if (valorAnalog <= 2730) nivelRisco = STATUS_MODERADO;
+  else                          nivelRisco = STATUS_UMIDO;
+
+  
+  if (nivelAnterior != STATUS_SECO && nivelRisco == STATUS_SECO) {
+    contadorAlertas++;
+    registrarAlerta("AUTOMATICO_CRITICO");
+    Serial.printf("[ALERTA] Solo extremamente SECO! ADC: %d\n", valorAnalog);
+  }
+}
