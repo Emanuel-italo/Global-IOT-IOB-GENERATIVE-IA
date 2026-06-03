@@ -254,3 +254,12 @@ void registrarAlerta(String tipo) {
   historico[idxHistorico] = {millis(), valorAnalog, tipo};
   idxHistorico = (idxHistorico + 1) % 5;
 }
+
+String nivelParaString(int nivel) {
+  switch (nivel) {
+    case STATUS_SECO: return "CRITICO";
+    case STATUS_MODERADO: return "ATENCAO";
+    case STATUS_UMIDO: return "NORMAL";
+    default: return "DESCONHECIDO";
+  }
+}
