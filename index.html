@@ -26,7 +26,7 @@
       --glow-b: 0 0 32px #00c8ff88;
     }
 
-        * {
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -39,6 +39,7 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+
     body::before {
       content: '';
       position: fixed;
@@ -53,7 +54,7 @@
       z-index: 0;
     }
 
-        .container {
+    .container {
       position: relative;
       z-index: 1;
       max-width: 1100px;
@@ -61,8 +62,7 @@
       padding: 24px 20px;
     }
 
-
-       header {
+    header {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -71,13 +71,13 @@
       margin-bottom: 28px;
     }
 
-        .logo {
+    .logo {
       display: flex;
       align-items: center;
       gap: 14px;
     }
 
-        .logo-icon {
+    .logo-icon {
       width: 44px;
       height: 44px;
       border: 2px solid var(--green);
@@ -90,7 +90,7 @@
       animation: pulse 3s ease-in-out infinite;
     }
 
-        @keyframes pulse {
+    @keyframes pulse {
 
       0%,
       100% {
@@ -110,7 +110,7 @@
       letter-spacing: 2px;
     }
 
-        .logo p {
+    .logo p {
       font-size: 0.75rem;
       color: var(--dim);
       letter-spacing: 1px;
@@ -118,8 +118,7 @@
       font-family: 'Space Mono', monospace;
     }
 
-
-        .header-right {
+    .header-right {
       text-align: right;
       font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
@@ -127,7 +126,7 @@
       line-height: 1.8;
     }
 
-        .status-dot {
+    .status-dot {
       display: inline-block;
       width: 8px;
       height: 8px;
@@ -139,7 +138,7 @@
       vertical-align: middle;
     }
 
-        @keyframes blink {
+    @keyframes blink {
       50% {
         opacity: 0;
       }
@@ -157,12 +156,12 @@
       transition: border-color .4s;
     }
 
-        .risk-gauge {
+    .risk-gauge {
       flex: 0 0 auto;
       text-align: center;
     }
 
-        .gauge-circle {
+    .gauge-circle {
       width: 120px;
       height: 120px;
       border-radius: 50%;
@@ -176,7 +175,7 @@
       overflow: hidden;
     }
 
-        .gauge-circle::before {
+    .gauge-circle::before {
       content: '';
       position: absolute;
       inset: 0;
@@ -185,21 +184,20 @@
       transition: background .4s;
     }
 
-        .gauge-val {
+    .gauge-val {
       font-family: 'Space Mono', monospace;
       font-size: 1.6rem;
       font-weight: 700;
       line-height: 1;
     }
 
-    
     .gauge-pct {
       font-size: 0.75rem;
       color: var(--dim);
       font-family: 'Space Mono', monospace;
     }
 
-        .risk-info {
+    .risk-info {
       flex: 1;
     }
 
@@ -212,15 +210,14 @@
       transition: color .4s;
     }
 
-
-        .risk-desc {
+    .risk-desc {
       font-size: 1rem;
       color: var(--dim);
       margin-bottom: 14px;
       line-height: 1.4;
     }
 
-        .adc-bar-wrap {
+    .adc-bar-wrap {
       background: #0d1a10;
       border-radius: 6px;
       height: 10px;
@@ -228,20 +225,19 @@
       width: 100%;
     }
 
-        .adc-bar {
+    .adc-bar {
       height: 100%;
       border-radius: 6px;
       transition: width .5s ease, background .4s;
       width: 0%;
     }
 
-        .adc-label {
+    .adc-label {
       margin-top: 6px;
       font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
       color: var(--dim);
     }
-
 
     .grid {
       display: grid;
@@ -250,7 +246,7 @@
       margin-bottom: 20px;
     }
 
-        .card {
+    .card {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -260,7 +256,7 @@
       justify-content: space-between;
     }
 
-        .card-label {
+    .card-label {
       font-size: 0.72rem;
       color: var(--dim);
       text-transform: uppercase;
@@ -272,7 +268,7 @@
       gap: 6px;
     }
 
-        .card-label::before {
+    .card-label::before {
       content: '';
       display: inline-block;
       width: 6px;
@@ -280,7 +276,6 @@
       border-radius: 50%;
       background: var(--border);
     }
-
 
     .card-val {
       font-size: 2rem;
@@ -290,15 +285,641 @@
       color: var(--green);
     }
 
-        .card-sub {
+    .card-sub {
       font-size: 0.78rem;
       color: var(--dim);
       margin-top: 4px;
     }
 
-        .leds-row {
+    .leds-row {
       display: flex;
       gap: 12px;
       align-items: center;
       margin-top: 8px;
     }
+
+    .led-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      transition: background .4s, box-shadow .4s;
+    }
+
+    .led-dot.off {
+      background: #152217;
+      box-shadow: none;
+    }
+
+    .led-dot.on-g {
+      background: var(--green);
+      box-shadow: var(--glow-g);
+    }
+
+    .led-dot.on-y {
+      background: var(--yellow);
+      box-shadow: var(--glow-y);
+    }
+
+    .led-dot.on-r {
+      background: var(--red);
+      box-shadow: var(--glow-r);
+    }
+
+    /* ── Animação da Garrafa/Reservatório ── */
+    .reservoir-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 15px;
+      background: #08110a;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .bottle-cap {
+      width: 18px;
+      height: 5px;
+      background: var(--dim);
+      border-radius: 3px 3px 0 0;
+      margin: 0 auto;
+    }
+
+    .bottle-body {
+      width: 38px;
+      height: 70px;
+      border: 2px solid var(--border);
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .tank-water {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0%;
+      background: linear-gradient(180deg, #00c8ff 0%, #0055ff 100%);
+      box-shadow: 0 -2px 10px rgba(0, 200, 255, 0.4);
+      transition: height 0.2s linear, background 0.5s ease;
+    }
+
+    .tank-percent {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+      z-index: 2;
+    }
+
+    /* ── Outros Elementos ── */
+    .hist-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hist-title {
+      font-size: 0.72rem;
+      color: var(--dim);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-family: 'Space Mono', monospace;
+      margin-bottom: 14px;
+    }
+
+    .hist-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+    }
+
+    .hist-table th {
+      color: var(--dim);
+      text-align: left;
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hist-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #1a2a1c;
+      vertical-align: middle;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .badge-auto {
+      background: #0d3a1f;
+      color: var(--green);
+    }
+
+    .badge-man {
+      background: #3a0d1a;
+      color: var(--red);
+    }
+
+    .endpoints {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .ep-title {
+      font-size: 0.72rem;
+      color: var(--dim);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-family: 'Space Mono', monospace;
+      margin-bottom: 14px;
+    }
+
+    .ep-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+    }
+
+    .ep-method {
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .get {
+      background: #0a3320;
+      color: var(--green);
+      border: 1px solid var(--green);
+    }
+
+    .post {
+      background: #3a2000;
+      color: var(--yellow);
+      border: 1px solid var(--yellow);
+    }
+
+    .ep-path {
+      color: var(--green);
+    }
+
+    .ep-desc {
+      color: var(--dim);
+      font-size: 0.72rem;
+    }
+
+    .ip-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #0d1a10;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      margin-bottom: 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    .ip-row input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--green);
+      font-family: inherit;
+      font-size: inherit;
+      flex: 1;
+    }
+
+    .ip-row label {
+      color: var(--dim);
+      white-space: nowrap;
+    }
+
+    .btn-update {
+      background: #00ff881a;
+      border: 1px solid var(--green);
+      color: var(--green);
+      border-radius: 6px;
+      padding: 6px 16px;
+      cursor: pointer;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      transition: background .2s;
+    }
+
+    .btn-update:hover {
+      background: #00ff8833;
+    }
+
+    .btn-reset {
+      background: #ff38601a;
+      border: 1px solid var(--red);
+      color: var(--red);
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      margin-top: 10px;
+      width: 100%;
+      transition: background .2s;
+    }
+
+    .btn-reset:hover {
+      background: #ff386033;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--dim);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .lvl-normal {
+      color: var(--red);
+    }
+
+    .lvl-atencao {
+      color: var(--yellow);
+    }
+
+    .lvl-critico {
+      color: var(--green);
+    }
+
+    .border-normal {
+      border-color: var(--red) !important;
+      box-shadow: var(--glow-r);
+    }
+
+    .border-atencao {
+      border-color: var(--yellow) !important;
+      box-shadow: var(--glow-y);
+    }
+
+    .border-critico {
+      border-color: var(--green) !important;
+      box-shadow: var(--glow-g);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <div class="logo">
+        <div class="logo-icon">🌱</div>
+        <div>
+          <h1>OrbitalAgro</h1>
+          <p>Estação Terrestre de Validação Climática — ODS 2</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div><span class="status-dot" id="dotConn"></span><span id="lblConn">CONECTANDO...</span></div>
+        <div id="lblUptime">UPTIME: --</div>
+        <div>FIAP · 2TDS · IoT</div>
+      </div>
+    </header>
+
+    <div class="ip-row">
+      <label>🆔 NÓ TERRESTRE ID (RM DO ARDUINO):</label>
+      <input type="text" id="espDeviceId" value="RM561337" placeholder="Ex: RM561337" />
+      <button class="btn-update" onclick="updateDeviceId()">SINCRONIZAR</button>
+    </div>
+
+    <div class="risk-card" id="riskCard">
+      <div class="risk-gauge">
+        <div class="gauge-circle" id="gaugeCircle">
+          <span class="gauge-val" id="gaugeVal">--</span>
+          <span class="gauge-pct" id="gaugePct">---%</span>
+        </div>
+        <div style="margin-top:8px; font-size:0.7rem; color:var(--dim); font-family:'Space Mono',monospace;">Umidade
+          Solo (ADC)</div>
+      </div>
+      <div class="risk-info">
+        <div class="risk-level" id="riskLevel">---</div>
+        <div class="risk-desc" id="riskDesc">Aguardando telemetria da estação...</div>
+        <div class="adc-bar-wrap">
+          <div class="adc-bar" id="adcBar"></div>
+        </div>
+        <div class="adc-label" id="adcLabel">Leitura: — | Índice de Saturação: —%</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div>
+          <div class="card-label">⚠ Alertas de Seca</div>
+          <div class="card-val" id="cardAlertas" style="color: var(--text);">--</div>
+          <div class="card-sub">Eventos críticos registrados</div>
+        </div>
+        <button class="btn-reset" onclick="sendResetCommand()">RESETAR ESTAÇÃO</button>
+      </div>
+
+      <div class="card" style="grid-column: span 2;">
+        <div>
+          <div class="card-label">⚙ Sistema de Irrigação Ativo</div>
+          <div class="card-val" id="cardModo" style="font-size:1.1rem; margin-top:6px;">--</div>
+        </div>
+
+        <div class="reservoir-wrapper">
+          <div>
+            <div class="bottle-cap"></div>
+            <div class="bottle-body">
+              <div class="tank-water" id="tankWater"></div>
+              <div class="tank-percent" id="tankPercent">0%</div>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <div class="card-sub" id="cardAlertaManual" style="font-weight: 700;">Bomba d'água desligada</div>
+            <div id="tankMsg" style="font-size: 0.75rem; margin-top: 6px; font-weight: 500; min-height: 30px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="border-color: var(--blue);">
+        <div>
+          <div class="card-label" style="color: var(--blue);">📡 Comando Remoto</div>
+          <div class="card-sub" style="margin-bottom: 12px;">Controle via Satélite (MQTT)</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <button class="btn-update" style="width: 100%; border-color: var(--yellow); color: var(--yellow);"
+            onclick="cmdAlternarModo()">⚙️ ALTERNAR MODO (AUTO/MANU)</button>
+          <button class="btn-update" style="width: 100%; border-color: var(--blue); color: var(--blue);"
+            onclick="cmdForcarBomba()">💧 FORÇAR IRRIGAÇÃO</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hist-card">
+      <div class="hist-title">📋 Registro de Eventos Climáticos (últimos 5)</div>
+      <table class="hist-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Timestamp (ms)</th>
+            <th>Leitura ADC</th>
+            <th>Origem do Evento</th>
+          </tr>
+        </thead>
+        <tbody id="histBody">
+          <tr>
+            <td colspan="4" style="color:var(--dim); padding:16px 10px;">Nenhum evento registrado.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="endpoints">
+      <div class="ep-title">🔌 Integração com Backend / App (Documentação da API REST Simulada)</div>
+      <div class="ep-row"><span class="ep-method get">GET</span><span class="ep-path">/status</span><span
+          class="ep-desc">— Estado do nó: uptime, modo, total de secas</span></div>
+      <div class="ep-row"><span class="ep-method get">GET</span><span class="ep-path">/sensor</span><span
+          class="ep-desc">— Telemetria: umidade, saturação, atuadores</span></div>
+      <div class="ep-row"><span class="ep-method post">POST</span><span class="ep-path">/reset</span><span
+          class="ep-desc">— Restabelece os contadores de eventos críticos do nó</span></div>
+    </div>
+
+    <footer>
+      <span>FIAP — GS 2026/1 · ECONOMIA ESPACIAL E AGRONEGÓCIO · ODS 2</span>
+      <span id="footerTime">--:--:--</span>
+    </footer>
+  </div>
+
+  <script>
+    // ── Configuração Base ──────────────────────────────────────────
+    let DEVICE_ID = 'RM561337';
+    let client = null;
+
+    // ── Lógica do Reservatório de Irrigação ────────────────────────
+    let irrigationProgress = 0;
+    let isIrrigating = false;
+    let irrigationFinished = false;
+
+    // O motor da animação funciona a cada 100ms
+    setInterval(() => {
+      if (isIrrigating) {
+        if (irrigationProgress < 100) {
+          irrigationProgress += 2; // Leva 5 segundos para encher a garrafa (50 ticks de 2%)
+        }
+
+        // Quando atinge 100%, desliga a bomba automaticamente!
+        if (irrigationProgress >= 100 && !irrigationFinished) {
+          isIrrigating = false;
+          irrigationFinished = true;
+          irrigationProgress = 100;
+
+          // Mensagem visual de Sucesso
+          document.getElementById('tankMsg').innerHTML = "✅ Plantações irrigadas<br>com sucesso!";
+          document.getElementById('tankMsg').style.color = "var(--green)";
+          document.getElementById('tankWater').style.background = "linear-gradient(180deg, #00ff88 0%, #00aa55 100%)";
+          document.getElementById('cardAlertaManual').textContent = 'CONCLUÍDO';
+          document.getElementById('cardAlertaManual').style.color = 'var(--green)';
+
+          // Dispara o comando via MQTT para desligar o ESP32 remotamente
+          cmdForcarBomba();
+
+          // Aguarda 5 segundos, esvazia o reservatório e reseta os textos
+          setTimeout(() => {
+            irrigationProgress = 0;
+            irrigationFinished = false;
+            document.getElementById('tankMsg').textContent = "";
+            updateTankVisual();
+          }, 5000);
+        }
+      } else {
+        // Se o usuário desligar a bomba no botão físico antes dos 100%, a água esvazia rápido
+        if (irrigationProgress > 0 && !irrigationFinished) {
+          irrigationProgress -= 5;
+          if (irrigationProgress <= 0) {
+            irrigationProgress = 0;
+            document.getElementById('tankMsg').textContent = "";
+          }
+        }
+      }
+      updateTankVisual();
+    }, 100);
+
+    function updateTankVisual() {
+      document.getElementById('tankWater').style.height = irrigationProgress + '%';
+      document.getElementById('tankPercent').textContent = Math.floor(irrigationProgress) + '%';
+    }
+
+    function updateDeviceId() {
+      const inputVal = document.getElementById('espDeviceId').value.trim();
+      if (inputVal) {
+        DEVICE_ID = inputVal;
+        console.log('[Dashboard] Alterando escuta para o Nó ID:', DEVICE_ID);
+        setupMQTT();
+      }
+    }
+
+    // ── Conexão Ativa via WebSockets MQTT ──────────────────────────
+    function setupMQTT() {
+      if (client) client.end();
+
+      const brokerUrl = 'wss://broker.hivemq.com:8884/mqtt';
+      const options = { clientId: 'OrbitalAgro-Dash-' + Math.random().toString(16).substr(2, 8), clean: true, connectTimeout: 5000 };
+
+      updateConnStatus('Sincronizando com Satélite...', 'var(--yellow)', 'var(--glow-y)');
+      client = mqtt.connect(brokerUrl, options);
+
+      const topicStatus = `orbitalsense/fiap2tds/${DEVICE_ID}/status`;
+      const topicSensor = `orbitalsense/fiap2tds/${DEVICE_ID}/sensor`;
+      const topicAlerta = `orbitalsense/fiap2tds/${DEVICE_ID}/alertas`;
+
+      client.on('connect', () => {
+        updateConnStatus('REDE ORBITAL ATIVA', 'var(--green)', 'var(--glow-g)');
+        client.subscribe(topicStatus); client.subscribe(topicSensor); client.subscribe(topicAlerta);
+      });
+
+      client.on('message', (topic, message) => {
+        try {
+          const data = JSON.parse(message.toString());
+          if (topic === topicStatus) renderStatus(data);
+          if (topic === topicSensor) renderSensor(data);
+          if (topic === topicAlerta) renderAlertas(data);
+        } catch (e) { }
+      });
+
+      client.on('error', (err) => updateConnStatus('FALHA DE SINAL', 'var(--red)', 'var(--glow-r)'));
+      client.on('offline', () => updateConnStatus('BUSCANDO NÓ TERRESTRE', 'var(--red)', 'var(--glow-r)'));
+    }
+
+    function sendResetCommand() {
+      if (client && client.connected) {
+        client.publish(`orbitalsense/fiap2tds/${DEVICE_ID}/reset`, 'reset', { qos: 1 });
+      } else alert('Erro: Painel desconectado da rede.');
+    }
+
+    function cmdAlternarModo() {
+      if (client && client.connected) client.publish(`orbitalsense/fiap2tds/${DEVICE_ID}/cmd/modo`, 'toggle', { qos: 1 });
+      else alert('Erro: Painel desconectado da rede.');
+    }
+
+    function cmdForcarBomba() {
+      if (client && client.connected) client.publish(`orbitalsense/fiap2tds/${DEVICE_ID}/cmd/bomba`, 'toggle', { qos: 1 });
+      else alert('Erro: Painel desconectado da rede.');
+    }
+
+    function updateConnStatus(text, color, glow) {
+      const dot = document.getElementById('dotConn'); const lbl = document.getElementById('lblConn');
+      if (dot && lbl) { dot.style.background = color; dot.style.boxShadow = glow; lbl.textContent = text; }
+    }
+
+    // ── Render: /status ───────────────────────────────────────────
+    function renderStatus(d) {
+      if (d.total_alertas !== undefined) document.getElementById('cardAlertas').textContent = d.total_alertas;
+      if (d.modo_automatico !== undefined) document.getElementById('cardModo').textContent = d.modo_automatico ? 'IRRIGAÇÃO AUTO 🌱' : 'CONTROLE MANUAL 🚜';
+
+      if (d.alerta_manual_ativo !== undefined) {
+        const espBombaLigada = d.alerta_manual_ativo;
+
+        if (espBombaLigada) {
+          document.getElementById('cardAlertaManual').textContent = '💧 BOMBA LIGADA';
+          document.getElementById('cardAlertaManual').style.color = 'var(--blue)';
+
+          // Dá início à animação de encher a garrafa
+          if (!isIrrigating && !irrigationFinished) {
+            isIrrigating = true;
+            document.getElementById('tankMsg').textContent = "Irrigando plantação...";
+            document.getElementById('tankMsg').style.color = "var(--blue)";
+            document.getElementById('tankWater').style.background = "linear-gradient(180deg, #00c8ff 0%, #0055ff 100%)";
+          }
+        } else {
+          // Se a bomba desligar antes dos 100%, aborta o enchimento
+          if (!irrigationFinished) {
+            document.getElementById('cardAlertaManual').textContent = 'Bomba d\'água desligada';
+            document.getElementById('cardAlertaManual').style.color = 'var(--dim)';
+            isIrrigating = false;
+          }
+        }
+      }
+
+      const ms = d.uptime_ms ?? 0; const s = Math.floor(ms / 1000);
+      document.getElementById('lblUptime').textContent = 'UPTIME: ' + s + 's';
+    }
+
+    // ── Render: /sensor ───────────────────────────────────────────
+    function renderSensor(d) {
+      const adc = d.valor_adc ?? 0;
+      const pct = parseFloat(d.percentual ?? 0);
+      const lvlArduino = d.nivel_risco ?? 0;
+
+      let nomeNivel, descNivel, corBarra, corTexto, classeLvl, classeBorder, shadowGauge;
+
+      if (lvlArduino === 0) {
+        nomeNivel = "SOLO SECO (CRÍTICO)"; descNivel = "⚠ ALERTA DE SECA: Umidade do solo perigosamente baixa. Cruzando dados com satélite meteorológico: Ausência de chuvas nas próximas 48h. Disparando sistema de irrigação de emergência!";
+        corBarra = 'var(--red)'; corTexto = 'var(--red)'; classeLvl = 'lvl-normal'; classeBorder = 'border-normal'; shadowGauge = 'var(--glow-r)';
+      } else if (lvlArduino === 1) {
+        nomeNivel = "UMIDADE MODERADA"; descNivel = "Solo com umidade intermediária. Monitoramento satelital indica necessidade de irrigação leve em breve. Sistema em estado de atenção.";
+        corBarra = 'var(--yellow)'; corTexto = 'var(--yellow)'; classeLvl = 'lvl-atencao'; classeBorder = 'border-atencao'; shadowGauge = 'var(--glow-y)';
+      } else {
+        nomeNivel = "UMIDADE IDEAL"; descNivel = "Saturação do solo em níveis perfeitos. Monitoramento ativo. Sistema de irrigação e bombas permanecem em standby.";
+        corBarra = 'var(--green)'; corTexto = 'var(--green)'; classeLvl = 'lvl-critico'; classeBorder = 'border-critico'; shadowGauge = 'var(--glow-g)';
+      }
+
+      document.getElementById('gaugeVal').textContent = adc; document.getElementById('gaugePct').textContent = pct.toFixed(1) + '%';
+      document.getElementById('adcBar').style.width = pct + '%'; document.getElementById('adcLabel').textContent = 'Leitura: ' + adc + ' | Índice de Saturação: ' + pct.toFixed(1) + '%';
+      const lvlEl = document.getElementById('riskLevel'); lvlEl.className = 'risk-level ' + classeLvl; lvlEl.textContent = nomeNivel; document.getElementById('riskDesc').textContent = descNivel;
+      document.getElementById('adcBar').style.background = corBarra; document.getElementById('riskCard').className = 'risk-card ' + classeBorder;
+      const gc = document.getElementById('gaugeCircle'); gc.style.borderColor = corBarra; gc.style.boxShadow = shadowGauge; document.getElementById('gaugeVal').style.color = corTexto;
+    }
+
+    // ── Render: /alertas ──────────────────────────────────────────
+    function renderAlertas(d) {
+      if (d.total_alertas !== undefined) document.getElementById('cardAlertas').textContent = d.total_alertas;
+      const hist = d.historico ?? []; const tbody = document.getElementById('histBody');
+      if (!hist.length || hist[0].tipo === "vazio") { tbody.innerHTML = '<tr><td colspan="4" style="color:var(--dim); padding:16px 10px;">Nenhum evento registrado.</td></tr>'; return; }
+      tbody.innerHTML = hist.map((a, i) => {
+        if (!a.tipo || a.tipo === "vazio") return '';
+        const isMan = a.tipo.includes('MANUAL') || a.tipo.includes('ACIONAMENTO_REMOTO');
+        const badge = isMan ? '<span class="badge badge-man">BOMBA MANUAL</span>' : '<span class="badge badge-auto">CLIMA/SATÉLITE</span>';
+        let tipoFormatado = a.tipo;
+        if (a.tipo === "AUTOMATICO_CRITICO") tipoFormatado = "SECA DETECTADA";
+        if (a.tipo === "MANUAL_BOTAO_PRETO") tipoFormatado = "ACIONAMENTO FÍSICO";
+        if (a.tipo === "ACIONAMENTO_REMOTO") tipoFormatado = "ACIONAMENTO REMOTO";
+        return `<tr><td style="color:var(--dim)">${i + 1}</td><td style="font-family:'Space Mono',monospace; color:var(--text)">${a.timestamp_ms} ms</td><td style="font-family:'Space Mono',monospace; color:var(--green)">${a.valor_adc}</td><td>${badge} <span style="color:var(--dim);font-size:0.65rem; margin-left:5px;">${tipoFormatado}</span></td></tr>`;
+      }).join('');
+    }
+
+    setInterval(clock, 1000); clock(); setupMQTT();
+    function clock() { document.getElementById('footerTime').textContent = new Date().toLocaleTimeString('pt-BR'); }
+  </script>
+</body>
+
+</html>
