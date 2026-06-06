@@ -8,6 +8,8 @@ Paulo Henrique Alves Estalise (RM 563811)
 Gabriel Bebe (RM 562012)
 
 
+Link video: https://www.loom.com/share/6c097f242f2a4b37a6e524c5b2549652
+
 
 
 **FIAP · 2TDS · Global Solution 2026/1 — Economia Espacial e Agronegócio · ODS 2 (Fome Zero e Agricultura Sustentável)**
@@ -271,3 +273,5 @@ Projeto acadêmico desenvolvido para a **Global Solution 2026/1 — FIAP**, turm
 Emanuel Italo Leal Trindade Soares (RM 561337)
 Paulo Henrique Alves Estalise (RM 563811)
 Gabriel Bebe (RM 562012)
+
+Link video: https://www.loom.com/share/6c097f242f2a4b37a6e524c5b2549652
