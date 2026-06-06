@@ -9,8 +9,14 @@ Gabriel Bebe (RM 562012)
 
 
 Link video: https://www.loom.com/share/6c097f242f2a4b37a6e524c5b2549652
+
+
 Link Github: https://github.com/Emanuel-italo/Global-IOT-IOB-GENERATIVE-IA
+
+
 Link Github para clonar: https://github.com/Emanuel-italo/Global-IOT-IOB-GENERATIVE-IA.git
+
+
 documentação é o propio README
 
 
